@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.version       = Glimpse::Dalli::VERSION
   gem.authors       = ['Garrett Bjerkhoel']
   gem.email         = ['me@garrettbjerkhoel.com']
-  gem.description   = %q{Provide a glimpse into the MySQL queries made during your application's requests.}
-  gem.summary       = %q{Provide a glimpse into the MySQL queries made during your application's requests.}
+  gem.description   = %q{Provide a glimpse into the Memcache commands made through Dalli during your application's requests.}
+  gem.summary       = %q{Provide a glimpse into the Memcache commands made through Dalli during your application's requests.}
   gem.homepage      = 'https://github.com/dewski/glimpse-dalli'
 
   gem.files         = `git ls-files`.split($/)
