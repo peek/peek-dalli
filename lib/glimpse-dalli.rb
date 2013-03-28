@@ -1,3 +1,3 @@
-require 'glimpse-dalli/version'
-require 'glimpse/views/dalli'
-require 'glimpse-dalli/railtie'
+require 'peek-dalli/version'
+require 'peek/views/dalli'
+require 'peek-dalli/railtie'

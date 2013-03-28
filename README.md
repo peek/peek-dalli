@@ -1,8 +1,8 @@
-# Glimpse::Dalli
+# Peek::Dalli
 
-Provide a glimpse into the Memcache commands made through Dalli during your application's requests.
+Take a peek into the Memcache commands made through Dalli during your application's requests.
 
-Things this glimpse view provides:
+Things this peek view provides:
 
 - Total number of memcache commands called during the request
 - The duration of the commands made during the request
@@ -11,7 +11,7 @@ Things this glimpse view provides:
 
 Add this line to your application's Gemfile:
 
-    gem 'glimpse-dalli'
+    gem 'peek-dalli'
 
 And then execute:
 
@@ -19,14 +19,14 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install glimpse-dalli
+    $ gem install peek-dalli
 
 ## Usage
 
-Add the following to your `config/initializers/glimpse.rb`: 
+Add the following to your `config/initializers/peek.rb`: 
 
 ```ruby
-Glimpse.into Glimpse::Views::Dalli
+Peek.into Peek::Views::Dalli
 ```
 
 ## Contributing

@@ -1,6 +1,6 @@
 require 'atomic'
 
-module Glimpse
+module Peek
   module Views
     class Dalli < View
       def initialize(options = {})
