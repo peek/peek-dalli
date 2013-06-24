@@ -9,3 +9,7 @@
 # 1.1.1
 
 - Fix an issue with the peek rename.
+
+# 1.1.2
+
+- Add CoffeeScript for tooltip context
