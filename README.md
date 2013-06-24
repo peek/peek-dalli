@@ -23,10 +23,24 @@ Or install it yourself as:
 
 ## Usage
 
-Add the following to your `config/initializers/peek.rb`: 
+Add the following to your `config/initializers/peek.rb`:
 
 ```ruby
 Peek.into Peek::Views::Dalli
+```
+
+There is an additional JavaScript file peek-dalli provides that gives
+additional information about the requests Dalli makes during the request:
+
+- Reads
+- Misses
+- Writes
+
+Include the `peek/views/dalli` JavaScript file in your application:
+
+```coffeescript
+#= require peek
+#= require peek/views/dalli
 ```
 
 ## Contributing
