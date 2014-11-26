@@ -17,7 +17,7 @@ module Peek
       def formatted_duration
         ms = @duration.value * 1000
         if ms >= 1000
-          "%.2fms" % ms
+          "%.2fs" % (ms / 1e3)
         else
           "%.0fms" % ms
         end
