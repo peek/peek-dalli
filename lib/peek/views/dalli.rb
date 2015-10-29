@@ -56,11 +56,11 @@ module Peek
 
         subscribe(/cache_(.*).active_support/) do |name, start, finish, id, payload|
           case name
-          when /^cache_read\./
+          when 'cache_read.active_support'
             @reads.update { |value| value + 1 }
-          when /^cache_miss\./
+          when 'cache_miss.active_support'
             @misses.update { |value| value + 1 }
-          when /^cache_write\./
+          when 'cache_write.active_support'
             @writes.update { |value| value + 1 }
           else
             @others.update { |value| value + 1 }
