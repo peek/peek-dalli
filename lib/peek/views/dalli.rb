@@ -10,6 +10,7 @@ module Peek
         @reads = Atomic.new(0)
         @misses = Atomic.new(0)
         @writes = Atomic.new(0)
+        @others = Atomic.new(0)
 
         setup_subscribers
       end
@@ -27,14 +28,15 @@ module Peek
         {
           :reads => @reads.value,
           :misses => @misses.value,
-          :writes => @writes.value
+          :writes => @writes.value,
+          :others => @others.value,
         }
       end
 
       def results
         {
           :duration => formatted_duration,
-          :calls => @calls.value
+          :calls => @calls.value,
         }
       end
 
@@ -49,21 +51,21 @@ module Peek
           @reads.value = 0
           @misses.value = 0
           @writes.value = 0
-        end
-
-        subscribe('cache_read.active_support') do
-          @reads.update { |value| value + 1 }
-        end
-
-        subscribe('cache_miss.active_support') do
-          @misses.update { |value| value + 1 }
-        end
-
-        subscribe('cache_write.active_support') do
-          @writes.update { |value| value + 1 }
+          @others.value = 0
         end
 
         subscribe(/cache_(.*).active_support/) do |name, start, finish, id, payload|
+          case name
+          when 'cache_read.active_support'
+            @reads.update { |value| value + 1 }
+          when 'cache_miss.active_support'
+            @misses.update { |value| value + 1 }
+          when 'cache_write.active_support'
+            @writes.update { |value| value + 1 }
+          else
+            @others.update { |value| value + 1 }
+          end
+
           duration = (finish - start)
           @duration.update { |value| value + duration }
           @calls.update { |value| value + 1 }
