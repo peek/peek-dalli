@@ -1,16 +1,16 @@
-require 'atomic'
+require 'concurrent/atomics'
 
 module Peek
   module Views
     class Dalli < View
       def initialize(options = {})
-        @duration = Atomic.new(0)
-        @calls = Atomic.new(0)
+        @duration = Concurrent::Atomic.new(0)
+        @calls    = Concurrent::Atomic.new(0)
 
-        @reads = Atomic.new(0)
-        @misses = Atomic.new(0)
-        @writes = Atomic.new(0)
-        @others = Atomic.new(0)
+        @reads  = Concurrent::Atomic.new(0)
+        @misses = Concurrent::Atomic.new(0)
+        @writes = Concurrent::Atomic.new(0)
+        @others = Concurrent::Atomic.new(0)
 
         setup_subscribers
       end
@@ -26,7 +26,7 @@ module Peek
 
       def context
         {
-          :reads => @reads.value,
+          :reads  => @reads.value,
           :misses => @misses.value,
           :writes => @writes.value,
           :others => @others.value,
@@ -36,7 +36,7 @@ module Peek
       def results
         {
           :duration => formatted_duration,
-          :calls => @calls.value,
+          :calls    => @calls.value,
         }
       end
 
@@ -46,9 +46,9 @@ module Peek
         # Reset each counter when a new request starts
         before_request do
           @duration.value = 0
-          @calls.value = 0
+          @calls.value    = 0
 
-          @reads.value = 0
+          @reads.value  = 0
           @misses.value = 0
           @writes.value = 0
           @others.value = 0
