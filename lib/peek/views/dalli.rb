@@ -4,13 +4,13 @@ module Peek
   module Views
     class Dalli < View
       def initialize(options = {})
-        @duration = Concurrent::Atomic.new(0)
-        @calls    = Concurrent::Atomic.new(0)
+        @duration = Concurrent::AtomicReference.new(0)
+        @calls    = Concurrent::AtomicReference.new(0)
 
-        @reads  = Concurrent::Atomic.new(0)
-        @misses = Concurrent::Atomic.new(0)
-        @writes = Concurrent::Atomic.new(0)
-        @others = Concurrent::Atomic.new(0)
+        @reads  = Concurrent::AtomicReference.new(0)
+        @misses = Concurrent::AtomicReference.new(0)
+        @writes = Concurrent::AtomicReference.new(0)
+        @others = Concurrent::AtomicReference.new(0)
 
         setup_subscribers
       end
