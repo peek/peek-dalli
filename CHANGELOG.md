@@ -19,3 +19,7 @@
 - Rename label from dalli to memcache - #6 @twe4ked
 - Capture "other" cache related notifications - #5 @twe4ked
 - Display durations more than 1000ms in seconds - #3 @jonah-williams
+
+# 1.2.0
+
+- Remove CoffeeScript dependency - #10 @gfx
